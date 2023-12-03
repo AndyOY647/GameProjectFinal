@@ -7,7 +7,7 @@ class Player{
         this.w = 128;
         this.h = 128;
         this.Player = new Sprite(x,y, this.w,this.h);
-        this.Player.debug = true;
+        this.Player.debug = false;
         this.direction = 'right';
         this.speed = 5;
 
@@ -54,6 +54,7 @@ class Player{
             this.Player.mirror.x = true;
             this.x -= this.speed;
         }
+        //Add up and down movement
         else{
             this.playAnimation('idle');
 
