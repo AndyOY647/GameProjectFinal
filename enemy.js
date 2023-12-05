@@ -1,11 +1,12 @@
 class Enemy{
-    constructor(x,y){
+    constructor(x,y, player){
         this.x = x;
         this.y = y;
         this.w = 150;
         this.h = 150;
+        this.player = player;
         this.Enemy = new Sprite(x,y, this.w,this.h);
-        this.debug = true;
+        this.Enemy.debug = true;
         this.speed = 3;
         this.maxHealth = 3;
         this.currentHealth = this.maxHealth;
@@ -28,12 +29,21 @@ class Enemy{
     }
 
     movement(){
-        if(kb.pressing('right')){
             this.playAnimation('fly');
-            this.direction = 'right';
-            this.Enemy.mirror.x = false;
-            this.x += this.speed;
-        }
+    }
+
+    collision(){
+        if(this.x+20 < this.player.x + this.player.w &&
+            this.x-20 +this.w> this.player.x &&
+             this.y+60 < this.player.y + this.player.h &&
+             this.y-32 +this.h > this.player.y
+            ){
+            this.collide = true;
+          }else{
+            this.collide = false;
+          }
+        
+        return this.collide;
     }
 
 } // class enemy ends

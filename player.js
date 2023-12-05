@@ -6,8 +6,8 @@ class Player{
         this.y = y;
         this.w = 128;
         this.h = 128;
-        this.Player = new Sprite(x,y, this.w,this.h);
-        this.Player.debug = false;
+        this.player = new Sprite(x,y, this.w,this.h);
+        this.player.debug = true;
         this.direction = 'right';
         this.speed = 5;
 
@@ -44,22 +44,32 @@ class Player{
         if(kb.pressing('right')){
             this.playAnimation('run');
             this.direction = 'right';
-            this.Player.mirror.x = false;
             this.x += this.speed;
         }
         else if(kb.pressing('left')){
             this.playAnimation('runLeft');
             this.direction = 'left';
-            this.speed;
-            this.Player.mirror.x = true;
             this.x -= this.speed;
+        }
+        else if(kb.pressing('down')){
+            this.playAnimation('idle');
+            this.direction = 'down';
+            this.y += this.speed;
+        }
+        else if(kb.pressing('up')){
+            this.playAnimation('idle');
+            this.direction = 'up';
+            this.y -= this.speed;
         }
         //Add up and down movement
         else{
             this.playAnimation('idle');
 
-
         }
-}
+        
+} // movement end
+
+    
+    
 
 }// class Player ends
